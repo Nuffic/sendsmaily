@@ -1,0 +1,18 @@
+{
+  "name": "nuffic/sendsmaily",
+  "description": "Send emails to sendsmaily",
+  "authors": [
+    {
+      "name": "Kaupo Juhkam",
+      "email": "kaupojuhkam@live.com"
+    }
+  ],
+  "require": {
+    "guzzlehttp/guzzle": "^6.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "nuffic\\sendsmaily\\": ""
+    }
+  }
+}
