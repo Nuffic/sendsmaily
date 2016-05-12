@@ -24,7 +24,7 @@ class ApiClient extends Configurable {
         return $this->client;
     }
 
-    public function addSubcscriber($email, array $additionalParams = []) {
+    public function addSubscriber($email, array $additionalParams = []) {
         $payload = [
             'key'       => $this->apiKey,
             'email'       => $email,
