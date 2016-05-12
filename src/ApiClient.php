@@ -18,31 +18,26 @@ class ApiClient extends Configurable {
         if(!isset($this->client)) {
             $this->client = new Client([
                 'base_uri' => $this->baseUrl,
-                #'auth' => [$this->apiUser, $this->apiPassword]
+                'auth' => [$this->apiUser, $this->apiPassword]
             ]);
         }
         return $this->client;
     }
 
-    public function addSubcscriber($email) {
+    public function addSubcscriber($email, array $additionalParams = []) {
         $payload = [
             'key'       => $this->apiKey,
             'email'       => $email,
+            'remote' => 1,
         ];
-
-        die(var_dump($this->sendRequest('contact.php', $payload)));
+        $payload = array_merge_recursive($payload, $additionalParams);
+        return json_decode($this->sendRequest('contact.php', $payload));
     }
 
     private function sendRequest($resource, array $payload) {
-        try {
-            return $this->getClient()->post(
-                $resource,
-                [
-                    'body'    => $payload
-                ]
-            )->getBody()->getContents();
-        } catch (BadResponseException $e) {
-            return $e->getResponse()->getBody()->getContents();
-        }
+        return $this->getClient()->post(
+            $resource,
+            ['form_params'    => $payload]
+        )->getBody()->getContents();
     }
 }
