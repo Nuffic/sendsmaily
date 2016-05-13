@@ -3,14 +3,12 @@
 namespace nuffic\sendsmaily;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\BadResponseException;
 
 class ApiClient extends Configurable {
 
     public $baseUrl;
     public $apiUser;
     public $apiPassword;
-    public $apiKey;
 
     private $client;
 
@@ -26,7 +24,6 @@ class ApiClient extends Configurable {
 
     public function addSubscriber($email, array $additionalParams = []) {
         $payload = [
-            'key'       => $this->apiKey,
             'email'       => $email,
             'remote' => 1,
         ];
