@@ -47,7 +47,7 @@ class ApiClient extends Configurable
                 $addresses
             ],
         ];
-        return json_decode($this->sendRequest('contact.php', $payload));
+        return json_decode($this->sendRequest('autoresponder.php', $payload));
     }
 
     private function sendRequest($resource, array $payload)
